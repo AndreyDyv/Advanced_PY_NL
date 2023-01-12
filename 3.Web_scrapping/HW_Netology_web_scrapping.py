@@ -51,17 +51,11 @@ def find_keywords(soup: BeautifulSoup, KEYWORDS: list):
         hubs = {word.find('a').text.strip() for word in hubs}
 
         preview = article.find(class_='article-formatted-body').find_all('p')
-        # print(preview)
-        # preview = [i.split() for i in [*[item.text for item in preview]]]
         preview = [*[item.text.split() for item in preview]]
         preview = list(flat_generator(preview))
-        # print(preview)
-        # print(type(preview))
-
+        
         date = article.find('time').get('title')
-
         title = article.find(class_='tm-article-snippet__title tm-article-snippet__title_h2').find('span').text
-
         href = f"https://habr.com{article.find('a', class_='tm-article-snippet__title-link').get('href')}"
 
         if hubs & set(KEYWORDS):
@@ -76,12 +70,6 @@ def find_keywords(soup: BeautifulSoup, KEYWORDS: list):
             if keyword in preview:
                 print(f'Совпадение в превью статьи {date} --> {title} --> {href}')
                 print('*************')
-
-
-        # print(article)
-        # print()
-        # print('*****************************************')
-        # print()
 
 
 if __name__ == '__main__':
