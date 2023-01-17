@@ -16,7 +16,7 @@ def get_headers():
     return Headers(browser='opera', os='win').generate()
 
 
-def flat_generator(list_of_lists: list) -> list:
+def flat_generator(list_of_lists: list):
     '''
     Функция-генератор, распаковывает список списков.
     :param list_of_lists:
@@ -110,7 +110,7 @@ def write_JSON(result: list, file_name: str) -> str:
     return print(f'Данные записаны в {file_name}')
 
 
-def main(url: str, keywords: set):
+def main(url: str, keywords: set, file_name: str):
     '''
     :param url: строка с web-адресом страницы для парсинга
     :param keywords: объект множество с ключевыми словами
@@ -118,10 +118,10 @@ def main(url: str, keywords: set):
     '''
     soup = cook_soup(url, headers=get_headers())
     result = find_keywords(soup, keywords)
-    write_JSON(result, file_name='result.json')
+    write_JSON(result, file_name)
 
 
 if __name__ == '__main__':
 
-    main(url=URL, keywords=KEYWORDS)
+    main(url=URL, keywords=KEYWORDS, file_name='result.json')
 
