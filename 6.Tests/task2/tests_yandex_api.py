@@ -2,13 +2,13 @@ from unittest import TestCase, main
 
 import requests
 
-from Netology_HW_unittest_pytest.Netology_HW_unittest_pytest_task2.yandex_api import YandexDisk
+from yandex_api import YandexDisk
 
 
 class TestYandexDisk(TestCase):
 
     def setUp(self):
-        with open('../../pass.txt', encoding='UTF-8') as file_obj:
+        with open('pass.txt', encoding='UTF-8') as file_obj:
             token = file_obj.read()
         self.ya = YandexDisk(token)
 
